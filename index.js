@@ -17,8 +17,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 
-const cors = require('cors');
-
 // Allow only requests from your frontend
 app.use(cors({
   origin: 'https://chatbot-ttf.vercel.app',  // Replace with the exact frontend URL
