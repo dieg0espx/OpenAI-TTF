@@ -2,20 +2,14 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const openai = require('openai');
 const cors = require('cors');
-const dotenv = require('dotenv');
 
-// Load environment variables from .env file
-const result = dotenv.config();
-if (result.error) {
-    throw result.error;  // Handle error if .env file is missing or can't be loaded
-}
 
 const app = express();
 const PORT = 4000;
-const IP_ADDRESS = '10.2.122.241';
-
+const IP_ADDRESS = '10.2.122.241'
 
 // Configure OpenAI API
+
 const openaiApiKey = process.env.SECRET_KEY;
 
 const openaiClient = new openai.OpenAI({ apiKey: openaiApiKey });
