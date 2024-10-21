@@ -1,0 +1,54 @@
+const express = require('express');
+const bodyParser = require('body-parser');
+const openai = require('openai');
+const cors = require('cors');
+const dotenv = require('dotenv');
+
+// Load environment variables from .env file
+const result = dotenv.config();
+if (result.error) {
+    throw result.error;  // Handle error if .env file is missing or can't be loaded
+}
+
+const app = express();
+const PORT = 4000;
+// const IP_ADDRESS = '10.2.122.241';
+const IP_ADDRESS = '192.168.1.205';
+
+// Configure OpenAI API
+const openaiApiKey = process.env.SECRET_KEY;
+
+const openaiClient = new openai.OpenAI({ apiKey: openaiApiKey });
+
+// Middleware to parse JSON bodies
+app.use(bodyParser.json());
+app.use(cors());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(express.json());
+
+// Define API endpoint
+app.post('/generate-text', async (req, res) => {
+    const { prompt } = req.body;
+    console.log(prompt);
+    try {
+        const response = await openaiClient.completions.create({
+            model: "gpt-3.5-turbo-instruct", 
+            prompt: prompt, 
+            max_tokens: 2000,
+        });
+        const generatedText = response.choices[0].text;
+        res.status(200).json(generatedText.trimStart());
+    } catch (error) {
+        console.error('Error generating text:', error);
+        res.status(500).json({ error: 'An error occurred while generating text' });
+    }
+
+
+});
+
+// Start the server
+app.listen(PORT, IP_ADDRESS, () => {
+    // console.log(`Server is running on ${IP_ADDRESS}:${PORT}`);
+    console.log(`Server is running on ${PORT}`);
+  });
