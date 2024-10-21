@@ -1,7 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const openai = require('openai');
+
 const cors = require('cors');
+app.use(cors({
+  origin: '*', // Replace with your actual Vercel frontend URL
+}));
 
 
 const app = express();
