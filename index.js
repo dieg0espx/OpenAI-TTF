@@ -4,8 +4,9 @@ const openai = require('openai');
 
 const cors = require('cors');
 app.use(cors({
-  origin: '*', // Replace with your actual Vercel frontend URL
+  origin: 'https://chatbot-ttf.vercel.app/', // Replace with your actual Vercel frontend domain
 }));
+
 
 
 const app = express();
