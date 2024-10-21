@@ -1,14 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const openai = require('openai');
-
 const cors = require('cors');
-app.use(cors({
-  origin: 'https://chatbot-ttf.vercel.app/', // Replace with your actual Vercel frontend domain
-}));
-
-
-
 const app = express();
 const PORT = 4000;
 const IP_ADDRESS = '10.2.122.241'
@@ -21,9 +14,10 @@ const openaiClient = new openai.OpenAI({ apiKey: openaiApiKey });
 
 // Middleware to parse JSON bodies
 app.use(bodyParser.json());
-app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
-
+app.use(cors({
+  origin: 'https://chatbot-ttf.vercel.app/', // Replace with your actual Vercel frontend domain
+}));
 app.use(express.json());
 
 // Define API endpoint
