@@ -15,10 +15,18 @@ const openaiClient = new openai.OpenAI({ apiKey: openaiApiKey });
 // Middleware to parse JSON bodies
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors({
-  origin: 'https://chatbot-ttf.vercel.app/', // Replace with your actual Vercel frontend domain
-}));
 app.use(express.json());
+
+const cors = require('cors');
+
+// Allow only requests from your frontend
+app.use(cors({
+  origin: 'https://chatbot-ttf.vercel.app',  // Replace with the exact frontend URL
+  methods: ['GET', 'POST'],  // Allow GET and POST requests
+  allowedHeaders: ['Content-Type'],  // Allow Content-Type headers
+  credentials: true,  // If you need to send cookies or auth headers, add this option
+}));
+
 
 // Define API endpoint
 app.post('/generate-text', async (req, res) => {
