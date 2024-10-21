@@ -12,8 +12,8 @@ if (result.error) {
 
 const app = express();
 const PORT = 4000;
-// const IP_ADDRESS = '10.2.122.241';
-const IP_ADDRESS = '192.168.1.205';
+const IP_ADDRESS = '10.2.122.241';
+
 
 // Configure OpenAI API
 const openaiApiKey = process.env.SECRET_KEY;
