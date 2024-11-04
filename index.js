@@ -19,7 +19,7 @@ app.use(express.json());
 
 // Allow only requests from your frontend
 app.use(cors({
-  origin: ['https://chatbot-ttf.vercel.app', 'http://localhost:3000'], // Allow requests from both frontend URLs
+  origin: 'https://chatbot-ttf.vercel.app', // Allow requests from both frontend URLs
   methods: ['GET', 'POST'],  // Allow GET and POST requests
   allowedHeaders: ['Content-Type'],  // Allow Content-Type headers
   credentials: true,  // If you need to send cookies or auth headers, add this option
