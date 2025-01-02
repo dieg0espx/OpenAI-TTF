@@ -16,7 +16,7 @@ app.use(express.json());
 
 // Allow only requests from your frontend
 app.use(cors({
-  origin: 'https://chatbot-ttf.vercel.app',
+  origin: ['https://chatbot-ttf.vercel.app', 'http://localhost:3000'],
   methods: ['GET', 'POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type'],
   credentials: true,
@@ -24,7 +24,7 @@ app.use(cors({
 
 // Handle preflight requests globally
 app.options('*', (req, res) => {
-  res.header('Access-Control-Allow-Origin', 'https://chatbot-ttf.vercel.app','http://localhost:3000');
+  res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Content-Type');
   res.sendStatus(204); // No content
