@@ -24,12 +24,11 @@ app.use(cors({
 
 // Handle preflight requests globally
 app.options('*', (req, res) => {
-  res.header('Access-Control-Allow-Origin', 'https://chatbot-ttf.vercel.app');
+  res.header('Access-Control-Allow-Origin', 'https://chatbot-ttf.vercel.app','http://localhost:3000');
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Content-Type');
   res.sendStatus(204); // No content
 });
-
 // Debugging logs
 app.use((req, res, next) => {
   console.log(`[${req.method}] ${req.url}`);
